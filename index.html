@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FoxyNest — приложения для Android</title>
+  <meta name="description" content="FoxyNest — маленькая мастерская Алины: простые и спокойные приложения для Android, которые я делаю в свободное время.">
+  <!-- Иконка во вкладке браузера: рисуем лисью мордочку прямо тут, без отдельного файла -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 8l16 14h16L56 8l-4 30-20 18-20-18z' fill='%23e07a3f'/%3E%3Cpath d='M20 40l12 12 12-12-12 4z' fill='%23fff4e8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Цвета собраны в одном месте, чтобы их было легко поменять */
+    :root {
+      --bg: #fbf6ee;          /* фон «бумага» */
+      --paper: #fffdf8;       /* карточки */
+      --ink: #2e2a26;         /* основной текст */
+      --muted: #6f665d;       /* второстепенный текст */
+      --line: #e8dccb;        /* линии, рамки */
+      --fox: #d9692f;         /* лисий оранжевый — акцент */
+      --fox-soft: #fbe3d3;
+      --green: #4f7a5a;
+      --green-soft: #dfeadf;
+      --shadow: 0 1px 2px rgba(60,40,20,.06), 0 6px 20px rgba(60,40,20,.06);
+    }
+    /* Тёмная тема: включается сама, если в телефоне/компьютере стоит тёмная тема */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1d1a17;
+        --paper: #26221e;
+        --ink: #f1e9df;
+        --muted: #b3a797;
+        --line: #3b342d;
+        --fox: #f08a4b;
+        --fox-soft: #3d2a1e;
+        --green: #8fbf98;
+        --green-soft: #26332a;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.6 "Nunito", system-ui, sans-serif;
+    }
+    a { color: var(--fox); }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+    /* ---------- Шапка ---------- */
+    header { padding: 56px 0 32px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; }
+    .brand svg { width: 40px; height: 40px; }
+    h1 {
+      font-size: clamp(30px, 6vw, 46px);
+      line-height: 1.15;
+      margin: 32px 0 16px;
+      letter-spacing: -.01em;
+    }
+    h1 .hand { font-family: "Caveat", cursive; color: var(--fox); font-size: 1.15em; }
+    .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-block; padding: 12px 20px; border-radius: 999px;
+      font-weight: 800; text-decoration: none; border: 2px solid var(--fox);
+    }
+    .btn.primary { background: var(--fox); color: #fff; }
+    .btn.ghost { color: var(--fox); }
+
+    /* ---------- Секции ---------- */
+    section { padding: 32px 0; }
+    h2 { font-size: 26px; margin: 0 0 20px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+      padding: 22px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+    }
+    .card h3 { margin: 12px 0 6px; font-size: 21px; }
+    .card p { margin: 0 0 12px; color: var(--muted); }
+    .card ul { margin: 0 0 12px; padding-left: 20px; color: var(--muted); }
+    .card .foot { margin-top: auto; font-size: 15px; }
+    .tag {
+      align-self: flex-start; font-size: 13px; font-weight: 800; padding: 3px 10px;
+      border-radius: 999px; background: var(--fox-soft); color: var(--fox);
+    }
+    .tag.green { background: var(--green-soft); color: var(--green); }
+    .tag.grey { background: var(--line); color: var(--muted); }
+
+    /* Блок «обо мне» — как листок в клетку */
+    .note {
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 28px,
+        var(--paper);
+      border: 1px solid var(--line); border-radius: 18px; padding: 24px 24px 20px;
+      box-shadow: var(--shadow);
+    }
+    .note p { margin: 0 0 14px; line-height: 28px; }
+
+    /* Поддержка */
+    .support { background: var(--fox-soft); border-radius: 22px; padding: 28px; }
+    .support p { margin: 0 0 12px; }
+
+    footer { padding: 40px 0 56px; color: var(--muted); font-size: 15px; }
+    footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <!-- Логотип-лисичка из простых фигур -->
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M8 8l16 14h16L56 8l-4 30-20 18-20-18z" fill="#e07a3f"/>
+        <path d="M20 40l12 12 12-12-12 4z" fill="#fff4e8"/>
+        <circle cx="24" cy="32" r="2.6" fill="#2e2a26"/>
+        <circle cx="40" cy="32" r="2.6" fill="#2e2a26"/>
+      </svg>
+      FoxyNest
+    </div>
+
+    <h1>Маленькие приложения<br>для Android, <span class="hand">сделанные с душой</span></h1>
+    <p class="lead">
+      Привет! Я Алина. В свободное время я делаю простые и спокойные приложения:
+      без рекламы, без лишней регистрации и без спешки.
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="#projects">Посмотреть проекты</a>
+      <a class="btn ghost" href="#support">Поддержать</a>
+    </div>
+  </header>
+
+  <!-- ================= ПРОЕКТЫ ================= -->
+  <section id="projects">
+    <h2>Над чем я работаю</h2>
+    <div class="grid">
+
+      <article class="card">
+        <span class="tag">В разработке</span>
+        <h3>Крок: планер</h3>
+        <p>Планер, похожий на бумажный ежедневник. В нём есть день, неделя, списки, цели и дневник.</p>
+        <ul>
+          <li>бесплатный и без регистрации</li>
+          <li>данные хранятся на телефоне</li>
+          <li>можно сохранить копию на свой Google Диск</li>
+          <li>на русском и белорусском языках</li>
+        </ul>
+        <p class="foot">Скоро в Google Play и RuStore</p>
+      </article>
+
+      <article class="card">
+        <span class="tag green">Переделываю</span>
+        <h3>RadioJourney</h3>
+        <p>Путешествие по миру через радио. Нажимаешь на страну на карте и слушаешь её радиостанции.</p>
+        <p>Это был мой дипломный проект. Сейчас я его обновляю, чтобы выпустить в магазины.</p>
+        <p class="foot"><a href="https://github.com/FoxyTheOne/GRADUATE_WORK">Старая версия на GitHub</a></p>
+      </article>
+
+      <article class="card">
+        <span class="tag grey">Черновик</span>
+        <h3>Приложение для родителей</h3>
+        <p>Идея на будущее: приложение, которое помогает родителям лучше понимать своего ребёнка и не забывать о важном.</p>
+        <p class="foot">Пока это только набросок</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= ОБО МНЕ ================= -->
+  <section id="about">
+    <h2>Обо мне</h2>
+    <div class="note">
+      <p>Я из Минска. Когда-то я училась на Android-разработчика, потом прошла курсы по тестированию. Сейчас программирование для меня хобби, которое меня радует.</p>
+      <p>Я делаю приложения, которыми хотела бы пользоваться сама: понятные, красивые и уважающие ваше время и личные данные. Каждое приложение для меня ещё и способ научиться чему-то новому.</p>
+      <p>Я не студия, а один человек с ноутбуком. Поэтому всё выходит не очень быстро, зато с любовью и вниманием к мелочам.</p>
+    </div>
+  </section>
+
+  <!-- ================= ПОДДЕРЖКА ================= -->
+  <section id="support">
+    <div class="support">
+      <h2>Поддержать</h2>
+      <p>Все мои приложения бесплатные. Если они вам пригодились или просто нравится то, что я делаю, можно угостить меня кофе на Boosty. Это помогает оплачивать аккаунты разработчика и находить время на новые обновления.</p>
+      <p>А ещё очень помогают отзывы в магазине приложений и рассказы друзьям 🧡</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://boosty.to/foxynest/donate">Поддержать на Boosty</a>
+        <a class="btn ghost" href="https://boosty.to/foxynest">Новости разработки</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="links">
+      <a href="https://play.google.com/store/apps/dev?id=5456793891038364788">Google Play</a>
+      <a href="https://boosty.to/foxynest">Boosty</a>
+      <a href="https://github.com/FoxyTheOne">GitHub</a>
+      <!-- Сюда можно добавить почту, например: <a href="mailto:...">Написать мне</a> -->
+    </div>
+    © 2026 FoxyNest · Алина Петрова
+  </footer>
+
+</div>
+</body>
+</html>
