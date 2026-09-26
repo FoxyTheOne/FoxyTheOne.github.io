@@ -1,0 +1,101 @@
+/* Цвета собраны в одном месте, чтобы их было легко поменять */
+:root {
+  --bg: #fbf6ee;          /* фон «бумага» */
+  --paper: #fffdf8;       /* карточки */
+  --ink: #2e2a26;         /* основной текст */
+  --muted: #6f665d;       /* второстепенный текст */
+  --line: #e8dccb;        /* линии, рамки */
+  --fox: #d9692f;         /* лисий оранжевый — акцент */
+  --fox-soft: #fbe3d3;
+  --green: #4f7a5a;
+  --green-soft: #dfeadf;
+  --shadow: 0 1px 2px rgba(60,40,20,.06), 0 6px 20px rgba(60,40,20,.06);
+}
+/* Тёмная тема: включается сама, если в телефоне/компьютере стоит тёмная тема */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1d1a17;
+    --paper: #26221e;
+    --ink: #f1e9df;
+    --muted: #b3a797;
+    --line: #3b342d;
+    --fox: #f08a4b;
+    --fox-soft: #3d2a1e;
+    --green: #8fbf98;
+    --green-soft: #26332a;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.6 "Nunito", system-ui, sans-serif;
+}
+a { color: var(--fox); }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- Шапка ---------- */
+header { padding: 56px 0 32px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; }
+.brand svg { width: 40px; height: 40px; }
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  line-height: 1.15;
+  margin: 32px 0 16px;
+  letter-spacing: -.01em;
+}
+h1 .hand { font-family: "Caveat", cursive; color: var(--fox); font-size: 1.15em; }
+.lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0; }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  display: inline-block; padding: 12px 20px; border-radius: 999px;
+  font-weight: 800; text-decoration: none; border: 2px solid var(--fox);
+}
+.btn.primary { background: var(--fox); color: #fff; }
+.btn.ghost { color: var(--fox); }
+
+/* ---------- Секции ---------- */
+section { padding: 32px 0; }
+h2 { font-size: 26px; margin: 0 0 20px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+  padding: 22px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+}
+.card h3 { margin: 12px 0 6px; font-size: 21px; }
+.card p { margin: 0 0 12px; color: var(--muted); }
+.card ul { margin: 0 0 12px; padding-left: 20px; color: var(--muted); }
+.card .foot { margin-top: auto; font-size: 15px; }
+.tag {
+  align-self: flex-start; font-size: 13px; font-weight: 800; padding: 3px 10px;
+  border-radius: 999px; background: var(--fox-soft); color: var(--fox);
+}
+.tag.green { background: var(--green-soft); color: var(--green); }
+.tag.grey { background: var(--line); color: var(--muted); }
+
+/* Блок «обо мне» — как листок в клетку */
+.note {
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 28px,
+    var(--paper);
+  border: 1px solid var(--line); border-radius: 18px; padding: 24px 24px 20px;
+  box-shadow: var(--shadow);
+}
+.note p { margin: 0 0 14px; line-height: 28px; }
+
+/* Поддержка */
+.support { background: var(--fox-soft); border-radius: 22px; padding: 28px; }
+.support p { margin: 0 0 12px; }
+
+footer { padding: 40px 0 56px; color: var(--muted); font-size: 15px; }
+footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 8px; }
+
+/* ---------- Переключатель языка (RU / EN) в шапке ---------- */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.lang { display: flex; gap: 4px; font-weight: 800; font-size: 15px; }
+.lang a, .lang span { padding: 4px 10px; border-radius: 999px; text-decoration: none; }
+.lang span { background: var(--fox-soft); color: var(--fox); } /* текущий язык */
+.lang a { color: var(--muted); }

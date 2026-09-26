@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Английская версия сайта. Она лежит в папке en/, поэтому её адрес: foxytheone.github.io/en/
+       Стили общие с русской версией: файл ../style.css («..» значит «на одну папку выше») -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foxy Nest — Android apps</title>
+  <meta name="description" content="Foxy Nest is Alina's tiny workshop: simple, calm Android apps made in her spare time.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 8l16 14h16L56 8l-4 30-20 18-20-18z' fill='%23e07a3f'/%3E%3Cpath d='M20 40l12 12 12-12-12 4z' fill='%23fff4e8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="alternate" hreflang="ru" href="https://foxytheone.github.io/">
+  <link rel="alternate" hreflang="en" href="https://foxytheone.github.io/en/">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="top">
+      <div class="brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M8 8l16 14h16L56 8l-4 30-20 18-20-18z" fill="#e07a3f"/>
+          <path d="M20 40l12 12 12-12-12 4z" fill="#fff4e8"/>
+          <circle cx="24" cy="32" r="2.6" fill="#2e2a26"/>
+          <circle cx="40" cy="32" r="2.6" fill="#2e2a26"/>
+        </svg>
+        Foxy Nest
+      </div>
+      <!-- Ссылка «RU» ведёт на одну папку выше, то есть на главную (русскую) страницу -->
+      <nav class="lang" aria-label="Language">
+        <a href="../" onclick="try{localStorage.setItem('lang','ru')}catch(e){}">RU</a>
+        <span>EN</span>
+      </nav>
+    </div>
+
+    <h1>Small Android apps,<br><span class="hand">made with love</span></h1>
+    <p class="lead">
+      Hi! I'm Alina. In my spare time I make simple, calm apps:
+      no ads, no unnecessary sign-ups, no rush.
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn ghost" href="#support">Support me</a>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>What I'm working on</h2>
+    <div class="grid">
+
+      <article class="card">
+        <span class="tag">In development</span>
+        <h3>Krok: planner</h3>
+        <p>A planner that feels like a paper notebook, with a day view, a week view, lists, goals and a journal.</p>
+        <ul>
+          <li>free, no sign-up</li>
+          <li>your data stays on your phone</li>
+          <li>optional backup to your own Google Drive</li>
+          <li>in English, Russian and Belarusian</li>
+        </ul>
+        <p class="foot">Coming soon to Google Play</p>
+      </article>
+
+      <article class="card">
+        <span class="tag green">Rebuilding</span>
+        <h3>RadioJourney</h3>
+        <p>Travel the world by radio. Tap a country on the map and listen to its stations.</p>
+        <p>This started as my graduation project. Now I'm updating it so I can release it.</p>
+        <p class="foot"><a href="https://github.com/FoxyTheOne/RadioJourney">Code on GitHub</a></p>
+      </article>
+
+      <article class="card">
+        <span class="tag grey">Early draft</span>
+        <h3>An app for parents</h3>
+        <p>An idea for the future: an app that helps parents understand their child better and keep track of what matters.</p>
+        <p class="foot">Just a sketch for now</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About me</h2>
+    <div class="note">
+      <p>I'm from Minsk, Belarus. I once studied Android development and later took a software testing course. Today programming is my hobby, and I enjoy it a lot.</p>
+      <p>I make the kind of apps I'd like to use myself: clear, pretty, and respectful of your time and your data. Every app is also a chance for me to learn something new.</p>
+      <p>I'm not a studio, just one person with a laptop. So things don't happen fast, but they're made with care and attention to detail.</p>
+    </div>
+  </section>
+
+  <!-- В Boosty можно платить картами из разных стран, поэтому кнопку оставляем и в английской версии -->
+  <section id="support">
+    <div class="support">
+      <h2>Support me</h2>
+      <p>All my apps are free. If you find them useful, or simply like what I do, you can buy me a coffee on Boosty. It helps pay for developer accounts and gives me time for new updates.</p>
+      <p>Reviews in the app store and telling your friends help a lot too 🧡</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://boosty.to/foxynest/donate">Support on Boosty</a>
+        <a class="btn ghost" href="https://boosty.to/foxynest">Dev updates (in Russian)</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="links">
+      <a href="https://play.google.com/store/apps/dev?id=5456793891038364788">Google Play</a>
+      <a href="https://boosty.to/foxynest">Boosty</a>
+      <a href="https://github.com/FoxyTheOne">GitHub</a>
+    </div>
+    © 2026 Foxy Nest · Alina Petrova
+  </footer>
+
+</div>
+</body>
+</html>
